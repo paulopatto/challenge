@@ -64,4 +64,13 @@ class Api::RestaurantsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_equal(2, JSON.parse(@response.body).count)
   end
+
+  test "when I send culinary as string" do
+    culinary = "Japonesa"
+
+    get "/api/restaurants", params:{culinaryId: culinary}
+
+    assert_response :success
+    assert_equal(0, JSON.parse(@response.body).count)
+  end
 end
