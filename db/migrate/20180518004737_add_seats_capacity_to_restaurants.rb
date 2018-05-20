@@ -1,5 +1,5 @@
 class AddSeatsCapacityToRestaurants < ActiveRecord::Migration[5.1]
   def change
-    add_column :restaurants, :seats_capacity, :integer
+    add_column :restaurants, :seats_capacity, :integer, default: 0
   end
 end

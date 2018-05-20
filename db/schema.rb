@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20180518004737) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "seats_capacity"
+    t.integer "seats_capacity", default: 0
   end
 
 end
