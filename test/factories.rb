@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :restaurant do
     name "Eben Ezer"
+    seats_capacity 10
   end
 
   factory :culinary do

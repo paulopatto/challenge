@@ -14,8 +14,10 @@ class Api::RestaurantsControllerTest < ActionDispatch::IntegrationTest
     # hoje esse restaurante aceita no maximo 10 pessoas
     # porem já exite 3 reservas de 2 pessoas criadas cada
     restaurant = Restaurant.first
+    restaurant.update(seats_capacity: 10)
+
     now = DateTime.now
-    3.times{ create(:reservation, restaurant: restaurant, event_time: now, seats: 2) }
+    3.times { create(:reservation, restaurant: restaurant, event_time: now, seats: 2) }
 
     get "/api/restaurants", params: { date: now, seats: 2 }
     assert_response :success
@@ -34,6 +36,8 @@ class Api::RestaurantsControllerTest < ActionDispatch::IntegrationTest
     # amanhã esse restaurante aceita no maximo 4 pessoas
     # porem já exite uma reservas de 2 pessoas criadas cada
     restaurant = Restaurant.first
+    restaurant.update(seats_capacity: 4)
+
     tomorrow =  DateTime.tomorrow
     create(:reservation, restaurant: restaurant, event_time: tomorrow, seats: 2)
 
@@ -63,14 +67,5 @@ class Api::RestaurantsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_equal(2, JSON.parse(@response.body).count)
-  end
-
-  test "when I send culinary as string" do
-    culinary = "Japonesa"
-
-    get "/api/restaurants", params:{culinaryId: culinary}
-
-    assert_response :success
-    assert_equal(0, JSON.parse(@response.body).count)
   end
 end
