@@ -1,14 +1,14 @@
 FactoryBot.define do
   factory :restaurant do
-    name "Eben Ezer"
+    name 'Eben Ezer'
     seats_capacity 10
   end
 
   factory :culinary do
-    name "Italiana"
+    name 'Italiana'
 
     transient do
-     restaurant_count 0
+      restaurant_count 0
     end
 
     after(:create) do |culinary, evaluator|
@@ -17,10 +17,10 @@ FactoryBot.define do
   end
 
   factory :reservation do
-    name "Ebenezio Meche a Perna"
-    email "ebenezio@email.com"
-    phone "1599881515"
+    name 'Ebenezio Meche a Perna'
+    email 'ebenezio@email.com'
+    phone '1599881515'
     seats 2
-    event_time DateTime.now
+    event_time Time.zone.now
   end
 end
